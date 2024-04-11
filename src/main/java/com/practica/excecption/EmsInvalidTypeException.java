@@ -8,9 +8,4 @@ public class EmsInvalidTypeException extends Exception{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public EmsInvalidTypeException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
-	
 }
