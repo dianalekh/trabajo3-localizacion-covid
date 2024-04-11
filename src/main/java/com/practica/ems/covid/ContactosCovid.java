@@ -37,10 +37,6 @@ public class ContactosCovid {
 		return poblacion;
 	}
 
-	public void setPoblacion(Poblacion poblacion) {
-		this.poblacion = poblacion;
-	}
-
 	public Localizacion getLocalizacion() {
 		return localizacion;
 	}
@@ -55,9 +51,6 @@ public class ContactosCovid {
 		return listaContactos;
 	}
 
-	public void setListaContactos(ListaContactos listaContactos) {
-		this.listaContactos = listaContactos;
-	}
 
 	public void loadData(String data, boolean reset) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
@@ -91,9 +84,7 @@ public class ContactosCovid {
 	}
 
 	public void loadDataFile(String fichero, boolean reset) {
-		File archivo = null;
 		FileReader fr = null;
-		BufferedReader br = null;
 		String datas[] = null, data = null;
 		loadDataFile(fichero, reset, fr, datas, data);
 		
