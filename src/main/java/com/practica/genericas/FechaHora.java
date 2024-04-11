@@ -1,9 +1,7 @@
 package com.practica.genericas;
 
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Locale;
+
 
 public class FechaHora implements Comparable<FechaHora>{
 	public class Fecha {
@@ -20,24 +18,12 @@ public class FechaHora implements Comparable<FechaHora>{
 			return dia;
 		}
 
-		public void setDia(int dia) {
-			this.dia = dia;
-		}
-
 		public int getMes() {
 			return mes;
 		}
 
-		public void setMes(int mes) {
-			this.mes = mes;
-		}
-
 		public int getAnio() {
 			return anio;
-		}
-
-		public void setAnio(int anio) {
-			this.anio = anio;
 		}
 
 		@Override
@@ -45,9 +31,6 @@ public class FechaHora implements Comparable<FechaHora>{
 			String cadena = String.format("%2d/%02d/%4d",dia,mes,anio);
 			return cadena;
 		}
-		
-		
-
 	}
 
 	public class Hora {
@@ -63,16 +46,8 @@ public class FechaHora implements Comparable<FechaHora>{
 			return hora;
 		}
 
-		public void setHora(int hora) {
-			this.hora = hora;
-		}
-
 		public int getMinuto() {
 			return minuto;
-		}
-
-		public void setMinuto(int minuto) {
-			this.minuto = minuto;
 		}
 
 		@Override
@@ -85,12 +60,7 @@ public class FechaHora implements Comparable<FechaHora>{
 
 	Fecha fecha;
 	Hora hora;
-	
-	public FechaHora(Fecha fecha, Hora hora) {
-		super();
-		this.fecha = fecha;
-		this.hora = hora;
-	}
+
 
 	public FechaHora(int dia, int mes, int anio, int hora, int minuto) {
 		this.fecha = new Fecha(dia, mes, anio);
@@ -101,16 +71,8 @@ public class FechaHora implements Comparable<FechaHora>{
 		return fecha;
 	}
 
-	public void setFecha(Fecha fecha) {
-		this.fecha = fecha;
-	}
-
 	public Hora getHora() {
 		return hora;
-	}
-
-	public void setHora(Hora hora) {
-		this.hora = hora;
 	}
 
 	@Override

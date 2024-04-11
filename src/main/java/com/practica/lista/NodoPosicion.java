@@ -1,7 +1,5 @@
 package com.practica.lista;
 
-import java.util.ArrayList;
-
 import com.practica.genericas.Coordenada;
 
 /**
@@ -15,15 +13,7 @@ public class NodoPosicion {
 	private int numPersonas;
 	private NodoPosicion siguiente;
 	
-	
-	public NodoPosicion() {
-		super();
-		siguiente = null;
-	}
 
-	
-	
-	
 	public NodoPosicion(Coordenada coordenada,  int numPersonas, NodoPosicion siguiente) {
 		super();
 		this.coordenada = coordenada;		
@@ -36,10 +26,6 @@ public class NodoPosicion {
 
 	public Coordenada getCoordenada() {
 		return coordenada;
-	}
-
-	public void setCoordenada(Coordenada coordenada) {
-		this.coordenada = coordenada;
 	}
 
 	public int getNumPersonas() {
