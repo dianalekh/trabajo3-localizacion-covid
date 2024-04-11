@@ -4,6 +4,7 @@ package com.practica.ems.covid;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -106,20 +107,20 @@ public class ContactosCovid {
 		}
 	}
 
-	private void niPersonaniLocalización(String datos[]){
+	private void niPersonaniLocalización (String datos[])throws EmsInvalidTypeException{
 		if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
 			throw new EmsInvalidTypeException();
 		}
 	}
 
-	private void esPersona(String datos[]){
+	private void esPersona(String datos[]) throws EmsInvalidNumberOfDataException, EmsDuplicatePersonException {
 		if (datos[0].equals("PERSONA")) {
 			numDatosPersona(datos);
 			this.poblacion.addPersona(this.crearPersona(datos));
 		}
 	}
 
-	private void esLocalizacion(String datos[]){
+	private void esLocalizacion(String datos[]) throws EmsInvalidNumberOfDataException, EmsDuplicateLocationException {
 		if (datos[0].equals("LOCALIZACION")) {
 			numeDatosLocalizacion(datos);
 			PosicionPersona pp = this.crearPosicionPersona(datos);
@@ -128,19 +129,19 @@ public class ContactosCovid {
 		}
 	}
 
-	private void numDatosPersona(String datos[]){
+	private void numDatosPersona(String datos[])throws EmsInvalidNumberOfDataException{
 		if (datos.length != Constantes.MAX_DATOS_PERSONA) {
 			throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");
 		}
 	}
 
-	private void numeDatosLocalizacion(String datos[]){
+	private void numeDatosLocalizacion(String datos[])throws EmsInvalidNumberOfDataException{
 		if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
 			throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6" );
 		}
 	}
 
-	private void cambioLinea(String[] datas){
+	private void cambioLinea(String[] datas) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
 		for (String linea : datas) {
 			String datos[] = this.dividirLineaData(linea);
 			niPersonaniLocalización(datos);
@@ -149,13 +150,13 @@ public class ContactosCovid {
 		}
 	}
 
-	private void fileReaderVacio(FileReader fr){
+	private void fileReaderVacio(FileReader fr)throws IOException {
 		if (null != fr) {
 			fr.close();
 		}
 	}
 
-	private void dividirEntrada(String[] datas,String data){
+	private void dividirEntrada(String[] datas,String data, BufferedReader br) throws IOException, EmsInvalidNumberOfDataException, EmsDuplicateLocationException, EmsInvalidTypeException, EmsDuplicatePersonException {
 		while ((data = br.readLine()) != null) {
 			datas = dividirEntrada(data.trim());
 			cambioLinea(datas);
@@ -175,7 +176,7 @@ public class ContactosCovid {
 			 * tiene el tipo PERSONA o LOCALIZACION y cargo la línea de datos en la 
 			 * lista correspondiente. Sino viene ninguno de esos tipos lanzo una excepción
 			 */
-			dividirEntrada();
+			dividirEntrada(datas,data,br);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -184,7 +185,7 @@ public class ContactosCovid {
 			// que se cierra tanto si todo va bien como si salta
 			// una excepcion.
 			try {
-				fileReaderVacio();
+				fileReaderVacio(fr);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
