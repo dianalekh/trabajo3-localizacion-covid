@@ -44,8 +44,6 @@ public class ContactosCovid {
 	public void setLocalizacion(Localizacion localizacion) {
 		this.localizacion = localizacion;
 	}
-	
-	
 
 	public ListaContactos getListaContactos() {
 		return listaContactos;
@@ -270,7 +268,7 @@ public class ContactosCovid {
 				persona.setCp(s);
 				break;
 			case 7:
-				persona.setFechaNacimiento(parsearFecha(s));
+				persona.setFechaNacimiento(parsearFecha(s,"0:00"));
 				break;
 			}
 		}
@@ -305,16 +303,7 @@ public class ContactosCovid {
 		}
 		return posicionPersona;
 	}
-	
-	private FechaHora parsearFecha (String fecha) {
-		int dia, mes, anio;
-		String[] valores = fecha.split("\\/");
-		dia = Integer.parseInt(valores[0]);
-		mes = Integer.parseInt(valores[1]);
-		anio = Integer.parseInt(valores[2]);
-		FechaHora fechaHora = new FechaHora(dia, mes, anio, 0, 0);
-		return fechaHora;
-	}
+
 	
 	private FechaHora parsearFecha (String fecha, String hora) {
 		int dia, mes, anio;
