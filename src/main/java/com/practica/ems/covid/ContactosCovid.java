@@ -177,7 +177,6 @@ public class ContactosCovid {
 			 * lista correspondiente. Sino viene ninguno de esos tipos lanzo una excepción
 			 */
 			dividirEntrada(datas,data,br);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
