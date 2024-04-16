@@ -43,9 +43,10 @@ public class ListaContactos {
 		if(!encontrado) {
 			NodoTemporal nuevo = new NodoTemporal();
 			nuevo.setFecha(p.getFechaPosicion());
+			if(aux != null){
+				nodoEncontrado(p, aux);
+			}
 
-			nodoEncontrado(p, aux);
-			
 			if(ant!=null) {
 				nuevo.setSiguiente(aux);
 				ant.setSiguiente(nuevo);
