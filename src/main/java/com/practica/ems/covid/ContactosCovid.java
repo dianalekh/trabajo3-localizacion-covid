@@ -27,10 +27,13 @@ public class ContactosCovid {
 	private Localizacion localizacion;
 	private ListaContactos listaContactos;
 
+	private Persona persona;
+
 	public ContactosCovid() {
 		this.poblacion = new Poblacion();
 		this.localizacion = new Localizacion();
 		this.listaContactos = new ListaContactos();
+		this.persona = new Persona();
 	}
 
 	public Poblacion getPoblacion() {
@@ -68,7 +71,7 @@ public class ContactosCovid {
 				if (datos.length != Constantes.MAX_DATOS_PERSONA) {
 					throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");
 				}
-				this.poblacion.addPersona(this.crearPersona(datos));
+				this.poblacion.addPersona(persona.crearPersona(datos));
 			}
 			if (datos[0].equals("LOCALIZACION")) {
 				if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
@@ -105,7 +108,7 @@ public class ContactosCovid {
 	private void esPersona(String datos[]) throws EmsInvalidNumberOfDataException, EmsDuplicatePersonException {
 		if (datos[0].equals("PERSONA")) {
 			numDatosPersona(datos);
-			this.poblacion.addPersona(this.crearPersona(datos));
+			this.poblacion.addPersona(persona.crearPersona(datos));
 		}
 	}
 
@@ -244,36 +247,7 @@ public class ContactosCovid {
 		return cadenas;
 	}
 
-	private Persona crearPersona(String[] data) {
-		Persona persona = new Persona();
-		for (int i = 1; i < Constantes.MAX_DATOS_PERSONA; i++) {
-			String s = data[i];
-			switch (i) {
-			case 1:
-				persona.setDocumento(s);
-				break;
-			case 2:
-				persona.setNombre(s);
-				break;
-			case 3:
-				persona.setApellidos(s);
-				break;
-			case 4:
-				persona.setEmail(s);
-				break;
-			case 5:
-				persona.setDireccion(s);
-				break;
-			case 6:
-				persona.setCp(s);
-				break;
-			case 7:
-				persona.setFechaNacimiento(FechaHora.parsearFecha(s,"0:00"));
-				break;
-			}
-		}
-		return persona;
-	}
+	////
 
 	private PosicionPersona crearPosicionPersona(String[] data) {
 		PosicionPersona posicionPersona = new PosicionPersona();

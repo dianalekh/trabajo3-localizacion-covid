@@ -84,4 +84,21 @@ public class Persona {
 
 		return cadena;
 	}
+
+	public Persona crearPersona(String[] data) {
+		Persona persona = new Persona();
+		if (data.length >= Constantes.MAX_DATOS_PERSONA) {
+			persona.setDocumento(data[1]);
+			persona.setNombre(data[2]);
+			persona.setApellidos(data[3]);
+			persona.setEmail(data[4]);
+			persona.setDireccion(data[5]);
+			persona.setCp(data[6]);
+			persona.setFechaNacimiento(FechaHora.parsearFecha(data[7], "0:00"));
+		} else {
+			// Manejar caso en el que el array de datos no tiene la longitud adecuada
+			System.out.println("El array de datos no tiene la longitud adecuada.");
+		}
+		return persona;
+	}
 }
