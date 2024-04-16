@@ -1,9 +1,4 @@
 package com.practica.lista;
-<<<<<<< HEAD
-
-=======
-import com.practica.genericas.Coordenada;
->>>>>>> issue#1
 import com.practica.genericas.FechaHora;
 import com.practica.genericas.PosicionPersona;
 
@@ -19,19 +14,13 @@ public class ListaContactos {
 	public void insertarNodoTemporal (PosicionPersona p) {
 		NodoTemporal aux = lista, ant=null;
 		boolean salir=false,  encontrado = false;
-		/**
-		 * Busco la posición adecuada donde meter el nodo de la lista, excepto
-		 * que esté en la lista. Entonces solo añadimos una coordenada.
-		 */
+
 		while (aux!=null && !salir) {
 			if(aux.getFecha().compareTo(p.getFechaPosicion())==0) {
 				encontrado = true;
 				salir = true;
-				/**
-				 * Insertamos en la lista de coordenadas
-				 */
-
-				nodoEncontrado(p, aux);
+				NodoPosicion npActual = aux.getListaCoordenadas();
+				nodoEncontrado(p, aux, npActual);
 
 			}else if(aux.getFecha().compareTo(p.getFechaPosicion())<0) {
 				ant = aux;
@@ -40,17 +29,12 @@ public class ListaContactos {
 				salir=true;
 			}
 		}
-		/**
-		 * No hemos encontrado ninguna posición temporal, así que
-		 * metemos un nodo nuevo en la lista
-		 */
+
 		if(!encontrado) {
 			NodoTemporal nuevo = new NodoTemporal();
 			nuevo.setFecha(p.getFechaPosicion());
-			if(aux != null){
-				nodoEncontrado(p, aux);
-			}
-
+				NodoPosicion npActual = nuevo.getListaCoordenadas();
+				nodoEncontrado(p, nuevo,npActual);
 			if(ant!=null) {
 				nuevo.setSiguiente(aux);
 				ant.setSiguiente(nuevo);
@@ -63,8 +47,7 @@ public class ListaContactos {
 		}
 	}
 
-	private void nodoEncontrado(PosicionPersona p, NodoTemporal aux ){
-		NodoPosicion npActual = aux.getListaCoordenadas();
+	private void nodoEncontrado(PosicionPersona p, NodoTemporal aux, NodoPosicion npActual){
 		NodoPosicion npAnt = null;
 		boolean npEncontrado = false;
 		while (npActual!=null && !npEncontrado) {
