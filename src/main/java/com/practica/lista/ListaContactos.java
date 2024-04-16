@@ -1,5 +1,9 @@
 package com.practica.lista;
+<<<<<<< HEAD
 
+=======
+import com.practica.genericas.Coordenada;
+>>>>>>> issue#1
 import com.practica.genericas.FechaHora;
 import com.practica.genericas.PosicionPersona;
 
